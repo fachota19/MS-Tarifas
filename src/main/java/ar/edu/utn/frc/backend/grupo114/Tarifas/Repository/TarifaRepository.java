@@ -1,4 +1,7 @@
-import com.tpi.tarifas.model.Tarifa; // (Asegúrate que el import sea tu clase Tarifa)
+package ar.edu.utn.frc.backend.grupo114.Tarifas.Repository;
+
+// Import del modelo desde su paquete correcto
+import ar.edu.utn.frc.backend.grupo114.Model.Tarifa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,9 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface TarifaRepository extends JpaRepository<Tarifa, Long> {
-
-    // Spring Data JPA es inteligente. Si sigues la convención de nombres,
-    // él solo crea la consulta.
 
     // Ejemplo: Buscar una tarifa activa por nombre y fecha
     Optional<Tarifa> findByNombreAndActivaIsTrueAndFechaInicioBeforeAndFechaFinAfter(

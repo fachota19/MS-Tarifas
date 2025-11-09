@@ -1,2 +1,15 @@
-ar\edu\utn\frc\backend\grupo114\Model\Tarifa.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\CrearTarifaRequestDTO.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\CalculoRequestDTO.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\TarifaConDetallesDTO.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\TarifaDTO.class
 ar\edu\utn\frc\backend\grupo114\Model\DetalleTarifa.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\DetalleTarifaDTO.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\Exception\ResourceNotFound.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\Service\Main.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\Controller\TarifaController.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\CalculoResponseDTO.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\Repository\TarifaRepository.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\CrearDetalleTarifaDTO.class
+ar\edu\utn\frc\backend\grupo114\Model\Tarifa.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\Service\TarifaService.class
+ar\edu\utn\frc\backend\grupo114\Tarifas\Repository\DetalleTarifaRepository.class
