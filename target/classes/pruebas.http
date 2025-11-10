@@ -1,0 +1,50 @@
+### Prueba 1: Crear una nueva tarifa
+POST http://localhost:8081/tarifas
+Content-Type: application/json
+
+{
+    "nombre": "Tarifa Base 2025",
+    "descripcion": "Tarifa principal para cálculos",
+    "fechaInicio": "2025-01-01",
+    "fechaFin": "2025-12-31",
+    "activa": true,
+    "detalles": [
+        {
+            "concepto": "COSTO_KM_BASE",
+            "valor": 150.75,
+            "unidad": "ARS"
+        },
+        {
+            "concepto": "VALOR_COMBUSTIBLE",
+            "valor": 950.00,
+            "unidad": "ARS_LITRO"
+        },
+        {
+            "concepto": "COSTO_ESTADIA_DIARIO",
+            "valor": 5000.00,
+            "unidad": "ARS_DIA"
+        },
+        {
+            "concepto": "CONSUMO_PROMEDIO_GENERAL",
+            "valor": 10.0,
+            "unidad": "KM_LITRO"
+        }
+    ]
+}
+
+### Prueba 2: Obtener todas las tarifas (después de crear una)
+GET http://localhost:8081/tarifas
+
+### Prueba 3: Calcular un costo
+POST http://localhost:8081/tarifas/calcular
+Content-Type: application/json
+
+{
+  "latitudOrigen": -31.417,
+  "longitudOrigen": -64.183,
+  "latitudDestino": -34.604,
+  "longitudDestino": -58.382,
+  "peso": 5000,
+  "volumen": 30,
+  "diasEstadiaEstimados": 2
+}

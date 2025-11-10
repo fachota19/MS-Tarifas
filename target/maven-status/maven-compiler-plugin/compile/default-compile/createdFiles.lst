@@ -1,4 +1,5 @@
 ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\CrearTarifaRequestDTO.class
+ar\edu\utn\frc\backend\grupo114\MsTarifasApplication.class
 ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\CalculoRequestDTO.class
 ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\TarifaConDetallesDTO.class
 ar\edu\utn\frc\backend\grupo114\Tarifas\DTO\TarifaDTO.class
