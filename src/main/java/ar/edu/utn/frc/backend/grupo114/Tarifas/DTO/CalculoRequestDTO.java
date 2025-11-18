@@ -1,21 +1,12 @@
-package ar.edu.utn.frc.backend.grupo114.Tarifas.DTO;
+package ar.edu.utn.frc.backend.grupo114.tarifas.dto;
 
-import lombok.Data;
-import java.math.BigDecimal;
+import lombok.*;
 
-@Data // (De Lombok, para getters/setters)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CalculoRequestDTO {
 
-    // Necesitamos las coordenadas para la API de Google Maps
-    private BigDecimal latitudOrigen;
-    private BigDecimal longitudOrigen;
-    private BigDecimal latitudDestino;
-    private BigDecimal longitudDestino;
-
-    // Necesitamos esto para filtrar camiones y calcular tarifas base
-    private BigDecimal peso;
-    private BigDecimal volumen;
-
-    // Necesario para el cálculo de estadía en depósitos
-    private Integer diasEstadiaEstimados;
+    private Long tarifaId;
+    private Double cantidad; 
 }

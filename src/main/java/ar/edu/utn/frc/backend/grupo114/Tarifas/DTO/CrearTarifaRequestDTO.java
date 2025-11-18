@@ -1,12 +1,15 @@
-package ar.edu.utn.frc.backend.grupo114.Tarifas.DTO;
+package ar.edu.utn.frc.backend.grupo114.tarifas.dto;
 
-import lombok.Data;
+import lombok.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
-// Podríamos añadir validaciones (ej. @NotNull) aquí más adelante
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CrearTarifaRequestDTO {
+
     private String nombre;
     private String descripcion;
     private LocalDate fechaInicio;

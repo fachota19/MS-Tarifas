@@ -1,12 +1,15 @@
-package ar.edu.utn.frc.backend.grupo114.Tarifas.DTO;
+package ar.edu.utn.frc.backend.grupo114.tarifas.dto;
 
-import lombok.Data;
+import lombok.*;
+
 import java.math.BigDecimal;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CrearDetalleTarifaDTO {
-    // No necesita ID, porque se va a crear
+
     private String concepto;
-    private BigDecimal valor;
     private String unidad;
+    private BigDecimal valor;
 }

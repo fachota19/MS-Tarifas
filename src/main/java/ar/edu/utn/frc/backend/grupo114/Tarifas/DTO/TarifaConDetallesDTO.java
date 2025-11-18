@@ -1,12 +1,15 @@
-package ar.edu.utn.frc.backend.grupo114.Tarifas.DTO;
+package ar.edu.utn.frc.backend.grupo114.tarifas.dto;
 
-import ar.edu.utn.frc.backend.grupo114.Tarifas.DTO.DetalleTarifaDTO;
-import lombok.Data;
+import lombok.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class TarifaConDetallesDTO {
+
     private Long id;
     private String nombre;
     private String descripcion;
@@ -14,6 +17,5 @@ public class TarifaConDetallesDTO {
     private LocalDate fechaFin;
     private boolean activa;
 
-    // La lista de detalles asociados
     private List<DetalleTarifaDTO> detalles;
 }

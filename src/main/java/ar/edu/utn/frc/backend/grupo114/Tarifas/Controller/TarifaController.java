@@ -1,19 +1,7 @@
-// Paquete corregido a tu estructura
-package ar.edu.utn.frc.backend.grupo114.Tarifas.Controller;
+package ar.edu.utn.frc.backend.grupo114.tarifas.controller;
 
-// --- Imports de DTOs ---
-// (Desde ...Tarifas.DTO)
-import ar.edu.utn.frc.backend.grupo114.Tarifas.DTO.CrearTarifaRequestDTO;
-import ar.edu.utn.frc.backend.grupo114.Tarifas.DTO.TarifaDTO;
-import ar.edu.utn.frc.backend.grupo114.Tarifas.DTO.TarifaConDetallesDTO;
-import ar.edu.utn.frc.backend.grupo114.Tarifas.DTO.CalculoRequestDTO;
-import ar.edu.utn.frc.backend.grupo114.Tarifas.DTO.CalculoResponseDTO;
-
-// --- Import del Servicio ---
-// (Desde ...Tarifas.Service)
-import ar.edu.utn.frc.backend.grupo114.Tarifas.Service.TarifaService;
-
-// --- Imports de Spring y Java ---
+import ar.edu.utn.frc.backend.grupo114.tarifas.dto.*;
+import ar.edu.utn.frc.backend.grupo114.tarifas.service.TarifaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,58 +9,83 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tarifas") // URL base para este controlador
+@RequestMapping("/tarifas")
 public class TarifaController {
 
     private final TarifaService tarifaService;
 
-    // Inyección de dependencias (el servicio)
     public TarifaController(TarifaService tarifaService) {
         this.tarifaService = tarifaService;
     }
 
-    /**
-     * Endpoint para GET /tarifas
-     * Lista todas las tarifas activas.
-     */
+    // ────────────────────────────────────────────────────────────────
+    // LISTAR TODAS
     @GetMapping
-    public ResponseEntity<List<TarifaDTO>> getTarifas() {
-        List<TarifaDTO> tarifas = tarifaService.getTodasLasTarifas();
-        return ResponseEntity.ok(tarifas); // Devuelve 200 OK
+    public ResponseEntity<List<TarifaDTO>> listarTarifas() {
+        return ResponseEntity.ok(tarifaService.getTodasLasTarifas());
     }
 
-    /**
-     * Endpoint para POST /tarifas
-     * Crea una nueva tarifa.
-     */
+    // ────────────────────────────────────────────────────────────────
+    // OBTENER POR ID
+    @GetMapping("/{id}")
+    public ResponseEntity<TarifaConDetallesDTO> obtenerTarifaPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(tarifaService.getTarifaConDetalles(id));
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    // CREAR TARIFA
     @PostMapping
-    public ResponseEntity<TarifaDTO> crearTarifa(@RequestBody CrearTarifaRequestDTO requestDTO) {
-        TarifaDTO nuevaTarifa = tarifaService.crearTarifa(requestDTO);
-        // Devuelve 201 Created
-        return ResponseEntity.status(HttpStatus.CREATED).body(nuevaTarifa);
+    public ResponseEntity<TarifaConDetallesDTO> crearTarifa(@RequestBody CrearTarifaRequestDTO request) {
+        return new ResponseEntity<>(tarifaService.crearTarifa(request), HttpStatus.CREATED);
     }
 
-    /**
-     * Endpoint para GET /tarifas/{id}/detalles
-     * Muestra los conceptos de cálculo asociados.
-     */
-    @GetMapping("/{id}/detalles")
-    public ResponseEntity<TarifaConDetallesDTO> getTarifaConDetalles(@PathVariable Long id) {
-        TarifaConDetallesDTO tarifa = tarifaService.getTarifaConDetalles(id);
-        return ResponseEntity.ok(tarifa); // Devuelve 200 OK
+    // ────────────────────────────────────────────────────────────────
+    // CREAR DETALLE
+    @PostMapping("/{id}/detalles")
+    public ResponseEntity<DetalleTarifaDTO> crearDetalle(
+            @PathVariable Long id,
+            @RequestBody CrearDetalleTarifaDTO request
+    ) {
+        return new ResponseEntity<>(tarifaService.agregarDetalle(id, request), HttpStatus.CREATED);
     }
 
-    /**
-     * Endpoint para POST /tarifas/calcular
-     * Calcula el costo estimado del traslado.
-     */
+    // ────────────────────────────────────────────────────────────────
+    // ACTIVAR TARIFA
+    @PutMapping("/{id}/activar")
+    public ResponseEntity<TarifaDTO> activarTarifa(@PathVariable Long id) {
+        return ResponseEntity.ok(tarifaService.activarTarifa(id));
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    // DESACTIVAR TARIFA
+    @PutMapping("/{id}/desactivar")
+    public ResponseEntity<TarifaDTO> desactivarTarifa(@PathVariable Long id) {
+        return ResponseEntity.ok(tarifaService.desactivarTarifa(id));
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    // ELIMINAR TARIFA
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarTarifa(@PathVariable Long id) {
+        tarifaService.eliminarTarifa(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    // ELIMINAR DETALLE
+    @DeleteMapping("/{id}/detalles/{detalleId}")
+    public ResponseEntity<Void> eliminarDetalle(
+            @PathVariable Long id,
+            @PathVariable Long detalleId
+    ) {
+        tarifaService.eliminarDetalle(id, detalleId);
+        return ResponseEntity.noContent().build();
+    }
+
+    // ────────────────────────────────────────────────────────────────
+    // CALCULAR COSTO ESTIMADO
     @PostMapping("/calcular")
     public ResponseEntity<CalculoResponseDTO> calcularTarifa(@RequestBody CalculoRequestDTO requestDTO) {
-
-        // Llama al servicio para hacer el cálculo
-        CalculoResponseDTO respuesta = tarifaService.calcularCostoEstimado(requestDTO);
-
-        // Devuelve la respuesta con 200 OK
-        return ResponseEntity.ok(respuesta);
+        return ResponseEntity.ok(tarifaService.calcularCostoEstimado(requestDTO));
     }
 }
