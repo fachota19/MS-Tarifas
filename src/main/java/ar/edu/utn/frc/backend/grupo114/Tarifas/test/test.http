@@ -1,96 +1,49 @@
-########################################################################
-# TARIFAS - TEST COMPLETO (MS-Tarifas)
-# Basado en data.sql con Tarifas 1, 2 y 3
-########################################################################
+### Variables comunes
+@baseUrl = http://localhost:8080/api
+@token = PONER_TOKEN_JWT_AQUI
 
-##############################
-### 1. Obtener todas las tarifas
-##############################
-GET http://localhost:8083/tarifas
-Accept: application/json
+### Listar tarifas
+GET {{baseUrl}}/tarifas
+Authorization: Bearer {{token}}
 
+###
 
-##############################
-### 2. Obtener tarifa por ID
-##############################
-GET http://localhost:8083/tarifas/1
-Accept: application/json
-
-
-##############################
-### 3. Crear una nueva tarifa
-##############################
-POST http://localhost:8083/tarifas
+### Crear tarifa
+POST {{baseUrl}}/tarifas
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "nombre": "Tarifa Nueva",
-  "descripcion": "Tarifa creada desde test.http",
+  "nombre": "Tarifa estándar 2025",
+  "descripcion": "Tarifa base para traslados nacionales",
   "fechaInicio": "2025-01-01",
   "fechaFin": "2025-12-31",
-  "activa": true
+  "activa": true,
+  "detalles": [
+    {
+      "concepto": "costoKm",
+      "valor": 500,
+      "unidad": "ARS/km"
+    },
+    {
+      "concepto": "costoPeso",
+      "valor": 10,
+      "unidad": "ARS/kg"
+    }
+  ]
 }
 
+###
 
-##############################
-### 4. Crear detalle para una tarifa existente (ej: tarifa 1)
-##############################
-POST http://localhost:8083/tarifas/1/detalles
+### Calcular costo estimado
+POST {{baseUrl}}/tarifas/calcular
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "concepto": "Lavado vehículo",
-  "unidad": "servicio",
-  "valor": 300.75
+  "distanciaKm": 200,
+  "pesoKg": 1500,
+  "volumenM3": 10,
+  "diasEstadia": 1,
+  "camionId": 3
 }
-
-
-##############################
-### 5. Crear detalle en una tarifa recién creada (ej: tarifa 4)
-##############################
-POST http://localhost:8083/tarifas/4/detalles
-Content-Type: application/json
-
-{
-  "concepto": "Carga adicional",
-  "unidad": "unidad",
-  "valor": 180.00
-}
-
-
-##############################
-### 6. Calcular costo estimado con tarifa 1
-### (Tarifa 1 tiene: km=50.5, peaje=200, seguro=150 → total unitario=400.50)
-##############################
-POST http://localhost:8083/tarifas/calcular
-Content-Type: application/json
-
-{
-  "tarifaId": 1,
-  "unidad": "km",
-  "cantidad": 100
-}
-
-
-##############################
-### 7. Activar tarifa (tarifa 2 está inactiva en data.sql)
-##############################
-PUT http://localhost:8083/tarifas/2/activar
-
-
-##############################
-### 8. Desactivar tarifa (ej: tarifa 1)
-##############################
-PUT http://localhost:8083/tarifas/1/desactivar
-
-
-##############################
-### 9. Eliminar detalle (ID 1..8 vienen del data.sql)
-##############################
-DELETE http://localhost:8083/tarifas/1/detalles/2
-
-
-##############################
-### 10. Eliminar tarifa completa (ej: 3)
-##############################
-DELETE http://localhost:8083/tarifas/2

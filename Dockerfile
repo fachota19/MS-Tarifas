@@ -2,7 +2,8 @@ FROM eclipse-temurin:17-jdk-alpine
 
 WORKDIR /app
 
-COPY target/ms-tarifas-1.0.0.jar app.jar
+COPY target/*.jar app.jar
+
 
 EXPOSE 8083
 
