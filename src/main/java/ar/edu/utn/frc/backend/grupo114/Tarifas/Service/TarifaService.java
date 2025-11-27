@@ -2,6 +2,7 @@ package ar.edu.utn.frc.backend.grupo114.tarifas.service;
 
 import ar.edu.utn.frc.backend.grupo114.tarifas.dto.*;
 import ar.edu.utn.frc.backend.grupo114.tarifas.exception.ResourceNotFoundException;
+import ar.edu.utn.frc.backend.grupo114.tarifas.model.Concepto;
 import ar.edu.utn.frc.backend.grupo114.tarifas.model.DetalleTarifa;
 import ar.edu.utn.frc.backend.grupo114.tarifas.model.Tarifa;
 import ar.edu.utn.frc.backend.grupo114.tarifas.repository.DetalleTarifaRepository;
@@ -73,11 +74,17 @@ public class TarifaService {
 
         if (request.getDetalles() != null) {
             for (CrearDetalleTarifaDTO d : request.getDetalles()) {
+
                 DetalleTarifa det = new DetalleTarifa();
-                det.setConcepto(d.getConcepto());
-                det.setUnidad(d.getUnidad());
-                det.setValor(d.getValor());
                 det.setTarifa(tarifa);
+                det.setValor(d.getValor());
+                det.setUnidad(d.getUnidad());
+
+                // ❗ Conversión String → Enum
+                det.setConcepto(
+                        Concepto.valueOf(d.getConcepto().toUpperCase())
+                );
+
                 detalleTarifaRepository.save(det);
             }
         }
@@ -94,10 +101,10 @@ public class TarifaService {
                 .orElseThrow(() -> new ResourceNotFoundException("Tarifa no encontrada con id: " + tarifaId));
 
         DetalleTarifa detalle = new DetalleTarifa();
-        detalle.setConcepto(req.getConcepto());
+        detalle.setTarifa(tarifa);
         detalle.setUnidad(req.getUnidad());
         detalle.setValor(req.getValor());
-        detalle.setTarifa(tarifa);
+        detalle.setConcepto(Concepto.valueOf(req.getConcepto().toUpperCase()));
 
         detalleTarifaRepository.save(detalle);
 
@@ -193,7 +200,7 @@ public class TarifaService {
     private DetalleTarifaDTO mapToDetalleDTO(DetalleTarifa d) {
         return new DetalleTarifaDTO(
                 d.getId(),
-                d.getConcepto(),
+                d.getConcepto().name(),  // Enum → String
                 d.getUnidad(),
                 d.getValor()
         );

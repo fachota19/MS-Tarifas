@@ -31,11 +31,9 @@ public class SecurityConfig {
 
             .authorizeHttpRequests(auth -> auth
 
-                // ===== MS-TARIFAS =====
-                .requestMatchers("/tarifas/calcular").hasAnyRole("OPERADOR", "CLIENTE")
-                .requestMatchers("/tarifas/**").hasRole("OPERADOR")
+                .requestMatchers("/tarifas/calcular").hasAnyAuthority("OPERADOR", "CLIENTE")
+                .requestMatchers("/tarifas/**").hasAuthority("OPERADOR")
 
-                // ===== SWAGGER =====
                 .requestMatchers(
                         "/swagger-ui.html",
                         "/swagger-ui/**",
@@ -72,7 +70,7 @@ public class SecurityConfig {
             List<String> roles = (List<String>) realmAccess.get("roles");
 
             return roles.stream()
-                    .map(r -> new SimpleGrantedAuthority("ROLE_" + r.toUpperCase()))
+                    .map(r -> new SimpleGrantedAuthority(r.toUpperCase()))
                     .collect(Collectors.toList());
         }
     }

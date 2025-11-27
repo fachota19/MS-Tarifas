@@ -1,0 +1,17 @@
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\security\SecurityConfig.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\service\TarifaService.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\model\DetalleTarifa.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\model\Concepto.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\CalculoRequestDTO.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\controller\TarifaController.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\TarifaDTO.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\DetalleTarifaDTO.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\model\Tarifa.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\CrearDetalleTarifaDTO.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\exception\ResourceNotFoundException.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\repository\DetalleTarifaRepository.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\MsTarifasApplication.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\repository\TarifaRepository.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\CrearTarifaRequestDTO.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\CalculoResponseDTO.java
+C:\proyectos\TPI\TPI-Backend---Grupo-114\MS-Tarifas\src\main\java\ar\edu\utn\frc\backend\grupo114\tarifas\dto\TarifaConDetallesDTO.java

@@ -1,11 +1,11 @@
 package ar.edu.utn.frc.backend.grupo114.tarifas.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.time.LocalDate;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class TarifaDTO {
 
@@ -15,4 +15,5 @@ public class TarifaDTO {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private boolean activa;
+
 }

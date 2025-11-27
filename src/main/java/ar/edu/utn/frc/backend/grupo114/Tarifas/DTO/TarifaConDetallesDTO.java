@@ -1,12 +1,12 @@
 package ar.edu.utn.frc.backend.grupo114.tarifas.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class TarifaConDetallesDTO {
 

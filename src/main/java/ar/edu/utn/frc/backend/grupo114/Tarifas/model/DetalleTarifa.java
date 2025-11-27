@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ar.edu.utn.frc.backend.grupo114.tarifas.model.Concepto;
+
 
 import java.math.BigDecimal;
 
@@ -18,8 +20,8 @@ public class DetalleTarifa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
-    private String concepto;
+    @Enumerated(EnumType.STRING)
+    private Concepto concepto;
 
     @Column(length = 50)
     private String unidad;
